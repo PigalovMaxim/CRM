@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Авторизация";
+    ViewData["HaveMenu"] = false;
+}
+
+<div class="w-full h-full bg-bg flex justify-center items-center">
+    <form class="w-3/10 bg-block rounded-lg border border-white flex flex-col justify-center p-8 gap-y-4 max-w-xl">
+        <span class="text-white text-lg capitalize">Логин</span>
+        <input id="js-auth-login" placeholder="Логин" class="w-full h-10 bg-transparent border rounded-lg text-white px-4 outline-none" />
+        <span id="js-auth-login-error" class="text-white mt-2 hidden"></span>
+        <span class="text-white text-lg capitalize">Пароль</span>
+        <input id="js-auth-password" placeholder="Пароль" class="w-full h-10 bg-transparent border rounded-lg text-white px-4 outline-none" />
+        <span id="js-auth-password-error" class="text-white mt-2 hidden"></span>
+        <button id="js-auth-submit" class="w-full h-10 bg-c-green hover:bg-c-green-light transition-colors text-white rounded-md flex justify-center items-center mt-10">
+            Авторизоваться
+        </button>
+    </form>
+</div>
+
+<script src="~/dist/login.min.js" asp-append-version="true"></script>

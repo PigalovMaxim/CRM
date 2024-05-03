@@ -1,0 +1,138 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Projects\\CRM\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{24084281-17B5-490F-AEC2-A6438A5107CE}|CRM.csproj|d:\\projects\\crm\\views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{24084281-17B5-490F-AEC2-A6438A5107CE}|CRM.csproj|solutionrelative:views\\login\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24084281-17B5-490F-AEC2-A6438A5107CE}|CRM.csproj|d:\\projects\\crm\\gulpfile.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{24084281-17B5-490F-AEC2-A6438A5107CE}|CRM.csproj|solutionrelative:gulpfile.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24084281-17B5-490F-AEC2-A6438A5107CE}|CRM.csproj|d:\\projects\\crm\\wwwroot\\js\\other\\login.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{24084281-17B5-490F-AEC2-A6438A5107CE}|CRM.csproj|solutionrelative:wwwroot\\js\\other\\login.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24084281-17B5-490F-AEC2-A6438A5107CE}|CRM.csproj|d:\\projects\\crm\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{24084281-17B5-490F-AEC2-A6438A5107CE}|CRM.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24084281-17B5-490F-AEC2-A6438A5107CE}|CRM.csproj|d:\\projects\\crm\\wwwroot\\js\\other\\menu.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{24084281-17B5-490F-AEC2-A6438A5107CE}|CRM.csproj|solutionrelative:wwwroot\\js\\other\\menu.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24084281-17B5-490F-AEC2-A6438A5107CE}|CRM.csproj|d:\\projects\\crm\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{24084281-17B5-490F-AEC2-A6438A5107CE}|CRM.csproj|solutionrelative:controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{24084281-17B5-490F-AEC2-A6438A5107CE}|CRM.csproj|d:\\projects\\crm\\views\\shared\\_menu.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{24084281-17B5-490F-AEC2-A6438A5107CE}|CRM.csproj|solutionrelative:views\\shared\\_menu.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "login.js",
+              "DocumentMoniker": "D:\\Projects\\CRM\\wwwroot\\js\\other\\login.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\other\\login.js",
+              "ToolTip": "D:\\Projects\\CRM\\wwwroot\\js\\other\\login.js",
+              "RelativeToolTip": "wwwroot\\js\\other\\login.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAXAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-05-01T12:43:17.737Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "gulpfile.js",
+              "DocumentMoniker": "D:\\Projects\\CRM\\gulpfile.js",
+              "RelativeDocumentMoniker": "gulpfile.js",
+              "ToolTip": "D:\\Projects\\CRM\\gulpfile.js",
+              "RelativeToolTip": "gulpfile.js",
+              "ViewState": "AQIAABAAAAAAAAAAAAA1wBsAAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-05-01T12:16:46.869Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Projects\\CRM\\Views\\Login\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Login\\Index.cshtml",
+              "ToolTip": "D:\\Projects\\CRM\\Views\\Login\\Index.cshtml",
+              "RelativeToolTip": "Views\\Login\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAABeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-30T15:39:39.033Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "D:\\Projects\\CRM\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "Controllers\\LoginController.cs",
+              "ToolTip": "D:\\Projects\\CRM\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "Controllers\\LoginController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T15:39:33.577Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "menu.js",
+              "DocumentMoniker": "D:\\Projects\\CRM\\wwwroot\\js\\other\\menu.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\other\\menu.js",
+              "ToolTip": "D:\\Projects\\CRM\\wwwroot\\js\\other\\menu.js",
+              "RelativeToolTip": "wwwroot\\js\\other\\menu.js",
+              "ViewState": "AQIAACQAAAAAAAAAAAA7wCwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-04-30T14:57:35.005Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "_Menu.cshtml",
+              "DocumentMoniker": "D:\\Projects\\CRM\\Views\\Shared\\_Menu.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Menu.cshtml",
+              "ToolTip": "D:\\Projects\\CRM\\Views\\Shared\\_Menu.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Menu.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABgAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-29T18:45:02.394Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\Projects\\CRM\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\Projects\\CRM\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAAkAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-29T17:55:21.069Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+﻿@{
+    var HaveMenu = true;
+    if (ViewData["HaveMenu"] != null && !(bool)ViewData["HaveMenu"])
+    {
+        HaveMenu = false;
+    }
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/dist/app.min.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="w-full h-full bg-bg flex flex-row justify-start items-center">
+        @if (HaveMenu)
+        {
+            @Html.Partial("_Menu")
+        }
+        <main id="js-layout" class="h-full transition-width w-main-screen-full">
+            @if (HaveMenu)
+            {
+                @Html.Partial("_Header")
+            }
+            <div class="h-content-height p-gap overflow-auto overflow-x-auto">
+                <div class="h-full min-w-[1280px] max-w-[1920px] w-full">
+                    @RenderBody()
+                </div>
+            </div>
+        </main>
+    </div>
+    @if (HaveMenu)
+    {
+        <script src="~/dist/menu.min.js" asp-append-version="true"></script>
+    }
+    <script src="~/dist/app.min.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
