@@ -7,8 +7,13 @@ const submit = document.getElementById('js-auth-submit');
 submit.addEventListener('click', e => {
     e.preventDefault();
     setErrors();
-    const isValid = validate(loginInput.value.trim(), passwordInput.value.trim());
-    console.log(loginInput.value.trim(), passwordInput.value.trim(), isValid);
+    const login = loginInput.value.trim();
+    const isValid = validate(login, passwordInput.value.trim());
+    if (!isValid) {
+        return;
+    }
+    Store.setItem('user', login);
+    window.location.replace("/home");
 });
 
 function setErrors(login, password) {
@@ -47,4 +52,6 @@ function validate(loginValue, passwordValue) {
         setErrors(loginErr, passwordErr);
         return false;
     }
+
+    return true;
 }

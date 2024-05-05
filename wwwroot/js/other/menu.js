@@ -31,6 +31,7 @@ for (const button of [...menuButtons, logo]) {
 }
 
 logout.addEventListener("click", () => {
+    Store.removeItem('user');
     window.location.replace("/");
 });
 
