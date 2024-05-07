@@ -4,14 +4,27 @@ const passwordInput = document.getElementById('js-auth-password');
 const passwordError = document.getElementById('js-auth-password-error');
 const submit = document.getElementById('js-auth-submit'); 
 
-submit.addEventListener('click', e => {
+submit.addEventListener('click', async (e) => {
     e.preventDefault();
     setErrors();
-    const login = loginInput.value.trim();
-    const isValid = validate(login, passwordInput.value.trim());
+    const login = loginInput.value;
+    const password = passwordInput.value;
+    const isValid = validate(login, password);
     if (!isValid) {
         return;
     }
+    const url = window.location.origin;
+    const answer = await fetch(url + '/api/login/login', {
+        method: 'POST',
+        body: JSON.stringify({
+            login,
+            hash: MD5(login + password),
+        }),
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    });
+    const result = await answer.json();
     Store.setItem('user', login);
     window.location.replace("/home");
 });

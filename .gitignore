@@ -28,5 +28,6 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
+./wwwroot/dist
 
 node_modules

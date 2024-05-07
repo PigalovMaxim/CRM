@@ -1,4 +1,5 @@
 using CRM.Models;
+using CRM.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -8,13 +9,26 @@ namespace CRM.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IConfiguration _config;
+        private WidgetRepository WidgetRepository = new();
 
         public HomeController(ILogger<HomeController> logger, IConfiguration config)
         {
             _logger = logger;
             _config = config;
-            Console.WriteLine(_config.GetSection("AllowedHosts"));
-            Console.WriteLine("Пипипипипипипидор гей");
+        }
+
+        [HttpGet]
+        public JsonResult AddWidget(int widgetId)
+        {
+
+            return Json(new { test = 3 });
+        }
+
+        [HttpGet]
+        public JsonResult GetWidgets()
+        {
+            var widgets = WidgetRepository.GetWidgets();
+            return Json(widgets);
         }
 
         public IActionResult Index()
@@ -22,15 +36,9 @@ namespace CRM.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View();
         }
     }
 }

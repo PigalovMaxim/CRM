@@ -1,11 +1,16 @@
+using CRM.Db;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<CrmDbContext>(options =>
+{
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -21,6 +26,17 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Login}/{action=Index}");
+    pattern: "{controller=Login}/{action=Index}"
+);
+
+app.MapControllerRoute(
+    name: "get_widgets",
+    pattern: "api/{controller=Home}/{action=GetWidgets}"
+);
+
+app.MapControllerRoute(
+    name: "login",
+    pattern: "api/{controller=Login}/{action=Login}"
+);
 
 app.Run();

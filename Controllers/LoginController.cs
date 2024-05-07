@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CRM.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CRM.Controllers
 {
@@ -7,6 +8,16 @@ namespace CRM.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login([FromBody] UserEntity user)
+        {
+            if (string.IsNullOrEmpty(user.Login) || string.IsNullOrEmpty(user.Hash))
+            {
+                return NotFound(); 
+            }
+            return Ok(user.Login);
         }
     }
 }
