@@ -2,8 +2,9 @@
     var menuItems = new List<dynamic>
     {
         new { Url = "/home", Icon = "/imgs/home.png", Title = "Главная" },
-        new { Url = "/tasks", Icon = "/imgs/tasks.png", Title = "Задачи" },
+        new { Url = "/tasks", Icon = "/imgs/tasks.svg", Title = "Задачи" },
         new { Url = "", Icon = "/imgs/profile.png", Title = "Профиль" },
+        new { Url = "/admin", Icon = "/imgs/admin.svg", Title = "Админ панель" },
     };
 }
 
@@ -23,7 +24,8 @@
             </span>
         </button>
     }
-    <button id="js-logout" class="w-full hover:bg-block-highlighted transition-all py-4 text-c-red text-lg mt-auto mb-10">
-        Выйти
+    <button id="js-logout" class="w-full hover:bg-block-highlighted transition-all flex flex-row items-center justify-center py-4 mt-auto mb-10">
+        <img src="/imgs/logout.svg" alt="Выход" class="w-5 h-5 mr-2" />
+        <span class="text-c-red text-lg">Выйти</span>
     </button>
 </aside>

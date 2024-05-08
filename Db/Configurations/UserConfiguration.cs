@@ -1,4 +1,4 @@
-﻿using CRM.Models;
+﻿using CRM.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

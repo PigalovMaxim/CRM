@@ -41,10 +41,11 @@ function closeMenu() {
     menu.classList.add(MENU_CLOSED_CLASS);
     menu.classList.remove(MENU_OPENED_CLASS);
     logo.classList.add('opacity-0');
-    logout.classList.add('opacity-0');
+    logout.querySelector('span').classList.add('hidden');
     isMenuOpen = false;
 
     for (const button of menuButtons) {
+        button.classList.replace('justify-start', 'justify-center');
         var img = button.querySelector("img");
         var span = button.querySelector("span");
 
@@ -60,10 +61,11 @@ function openMenu() {
     menu.classList.remove(MENU_CLOSED_CLASS);
     menu.classList.add(MENU_OPENED_CLASS);
     logo.classList.remove('opacity-0');
-    logout.classList.remove('opacity-0');
+    logout.querySelector('span').classList.remove('hidden');
     isMenuOpen = true;
 
     for (const button of menuButtons) {
+        button.classList.replace('justify-center', 'justify-start');
         var img = button.querySelector("img");
         var span = button.querySelector("span");
 

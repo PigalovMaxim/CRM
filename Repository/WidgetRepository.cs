@@ -1,11 +1,17 @@
-﻿using CRM.Models;
+﻿using CRM.Db;
+using CRM.Models;
 using System.Collections;
 
 namespace CRM.Repository
 {
     public class WidgetRepository
     {
-        public ArrayList GetWidgets()
+        private readonly CrmDbContext _dbContext;
+        public WidgetRepository(CrmDbContext dbContext)
+        {
+            _dbContext = dbContext;    
+        }
+        public ArrayList GetWidgets(int userId)
         {
             var widgets = new ArrayList
             {

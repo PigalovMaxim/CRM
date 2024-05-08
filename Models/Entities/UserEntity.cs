@@ -1,8 +1,8 @@
-﻿namespace CRM.Models
+﻿namespace CRM.Models.Entities
 {
     public class UserEntity
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Login { get; set; } = string.Empty;
         public string Hash { get; set; } = string.Empty;
     }

@@ -12,11 +12,15 @@ namespace CRM.Repository
             _dbContext = dbContext;
         }
 
-        public async Task<Guid?> Login(string login, string hash)
+        public async Task<int?> Login(string login, string hash)
         {
             var user = await _dbContext.Users
                 .AsNoTracking()
                 .FirstOrDefaultAsync(u => u.Login == login && u.Hash == hash);
+            if (user == null)
+            {
+                return null;
+            }
             return user.Id;
         }
     }

@@ -4,6 +4,10 @@ const passwordInput = document.getElementById('js-auth-password');
 const passwordError = document.getElementById('js-auth-password-error');
 const submit = document.getElementById('js-auth-submit'); 
 
+if (Store.getItem('user')) {
+    window.location.replace("/home");
+}
+
 submit.addEventListener('click', async (e) => {
     e.preventDefault();
     setErrors();
@@ -14,19 +18,23 @@ submit.addEventListener('click', async (e) => {
         return;
     }
     const url = window.location.origin;
-    const answer = await fetch(url + '/api/login/login', {
-        method: 'POST',
-        body: JSON.stringify({
-            login,
-            hash: MD5(login + password),
-        }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
-    const result = await answer.json();
-    Store.setItem('user', login);
-    window.location.replace("/home");
+    try {
+        const answer = await fetch(url + '/api/login/login', {
+            method: 'POST',
+            body: JSON.stringify({
+                login,
+                hash: MD5(login + password),
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const result = await answer.json();
+        Store.setItem('user', { login, id: result });
+        window.location.replace("/home");
+    } catch (e) {
+        console.error(e);
+    }
 });
 
 function setErrors(login, password) {
@@ -55,10 +63,10 @@ function validate(loginValue, passwordValue) {
     let passwordErr = '';
 
     if (!loginValue) {
-        loginErr = 'Поле является обязательным';
+        loginErr = 'РџРѕР»Рµ СЏРІР»СЏРµС‚СЃСЏ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рј';
     }
     if (!passwordValue) {
-        passwordErr = 'Поле является обязательным';
+        passwordErr = 'РџРѕР»Рµ СЏРІР»СЏРµС‚СЃСЏ РѕР±СЏР·Р°С‚РµР»СЊРЅС‹Рј';
     }
 
     if (loginErr || passwordErr) {

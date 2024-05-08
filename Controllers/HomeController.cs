@@ -1,7 +1,6 @@
-using CRM.Models;
-using CRM.Repository;
+using CRM.Db;
+using CRM.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace CRM.Controllers
 {
@@ -9,12 +8,13 @@ namespace CRM.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IConfiguration _config;
-        private WidgetRepository WidgetRepository = new();
+        private readonly WidgetService _widgetservice;
 
-        public HomeController(ILogger<HomeController> logger, IConfiguration config)
+        public HomeController(ILogger<HomeController> logger, IConfiguration config, CrmDbContext dbContext)
         {
             _logger = logger;
             _config = config;
+            _widgetservice = new WidgetService(dbContext);
         }
 
         [HttpGet]
@@ -25,9 +25,13 @@ namespace CRM.Controllers
         }
 
         [HttpGet]
-        public JsonResult GetWidgets()
+        public IActionResult GetWidgets(int? id)
         {
-            var widgets = WidgetRepository.GetWidgets();
+            if (id == null)
+            {
+                return BadRequest();
+            }
+            var widgets = _widgetservice.GetWidgets((int) id);
             return Json(widgets);
         }
 

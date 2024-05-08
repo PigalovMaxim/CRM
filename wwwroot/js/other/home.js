@@ -17,11 +17,12 @@ async function init() {
     setLoading();
     const url = window.location.origin;
     let result = [];
+    const id = Store.getItem('user').id;
     try {
-        const answer = await fetch(url + '/api/home/getWidgets');
+        const answer = await fetch(url + '/api/home/getWidgets?id=' + id);
         result = await answer.json();
     } catch (e) {
-        console.err("Ошибка сервера");
+        console.error("РћС€РёР±РєР° СЃРµСЂРІРµСЂР°");
         return;
     }
     container.classList = MAIN_CLASSNAMES;
@@ -43,12 +44,12 @@ async function init() {
     }
     const title = document.createElement('h1');
     title.classList = 'text-4xl text-white mb-4 font-bold';
-    title.innerHTML = 'У вас нет виджетов';
+    title.innerHTML = 'РЈ РІР°СЃ РЅРµС‚ РІРёРґР¶РµС‚РѕРІ';
     container.appendChild(title);
 
     const button = document.createElement('button');
     button.classList = 'w-60 h-10 bg-c-green hover:bg-c-green-light transition-colors text-white rounded-md flex justify-center items-center';
-    button.innerHTML = 'Добавить';
+    button.innerHTML = 'Р”РѕР±Р°РІРёС‚СЊ';
     container.appendChild(button);
 }
 
@@ -83,7 +84,7 @@ class Widget {
 
         const progressCount = (this.data.totalHours / this.data.planHours) * 100;
 
-        const progress = getCircularProgress(300, '#01953F', 30, progressCount, `${this.data.totalHours}/${this.data.planHours}`);
+        const progress = getCircularProgress(300, '#01953F', 30, progressCount, `${this.data.totalHours}С‡ / ${this.data.planHours}С‡`);
         const progressWrapper = document.createElement('div');
         progressWrapper.classList = 'w-full aspect-square mt-4 flex justify-center items-center';
         progressWrapper.appendChild(progress);
@@ -145,7 +146,7 @@ class Widget {
     }
 }
 
-function getCircularProgress(size, color, width, progress) {
+function getCircularProgress(size, color, width, progress, progressStr) {
     const canvas = document.createElement('canvas');
     canvas.style.width = size + 'px';
     canvas.style.height = size + 'px';
@@ -168,10 +169,11 @@ function getCircularProgress(size, color, width, progress) {
     ctx.strokeStyle = color + "50";
     ctx.stroke();
 
-    ctx.font = '20px Arial';
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '32px Arial';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('Ваш текст', canvas.width / 2, canvas.height / 2);
+    ctx.fillText(progressStr, canvas.width / 2, canvas.height / 2);
 
     return canvas;
 }
