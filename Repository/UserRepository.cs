@@ -1,4 +1,6 @@
 ﻿using CRM.Db;
+using CRM.Models;
+using CRM.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CRM.Repository
@@ -22,6 +24,31 @@ namespace CRM.Repository
                 return null;
             }
             return user.Id;
+        }
+
+        public async Task<bool> CreateUser(UserEntity user)
+        {
+            try
+            {
+                await _dbContext.Users.AddAsync(user);
+                await _dbContext.SaveChangesAsync();
+                return true;
+            } catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public async Task<List<User>> GetUsers()
+        {
+            return await _dbContext.Users
+                .AsNoTracking()
+                .Select(u => new User()
+                {
+                    Id = u.Id,
+                    Login = u.Login,
+                })
+                .ToListAsync();
         }
     }
 }

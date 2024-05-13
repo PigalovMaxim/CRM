@@ -39,4 +39,19 @@ app.MapControllerRoute(
     pattern: "api/{controller=Login}/{action=Login}"
 );
 
+app.MapControllerRoute(
+    name: "admin_data",
+    pattern: "api/{controller=Admin}/{action=GetAdminData}"
+);
+
+app.MapControllerRoute(
+    name: "admin_create_user",
+    pattern: "api/{controller=Admin}/{action=CreateUser}"
+);
+
+app.MapControllerRoute(
+    name: "admin_create_work_day",
+    pattern: "api/{controller=Admin}/{action=CreateWorkDay}"
+);
+
 app.Run();

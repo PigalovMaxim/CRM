@@ -25,13 +25,13 @@ namespace CRM.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetWidgets(int? id)
+        public async Task<IActionResult> GetWidgets(int? id)
         {
             if (id == null)
             {
                 return BadRequest();
             }
-            var widgets = _widgetservice.GetWidgets((int) id);
+            var widgets = await _widgetservice.GetWidgets((int) id);
             return Json(widgets);
         }
 

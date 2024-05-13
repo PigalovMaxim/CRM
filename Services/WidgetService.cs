@@ -13,9 +13,9 @@ namespace CRM.Services
             _repository = new WidgetRepository(dbContext);
         }
 
-        public ArrayList GetWidgets(int userId)
+        public async Task<ArrayList> GetWidgets(int userId)
         {
-            return _repository.GetWidgets(userId);
+            return await _repository.GetWidgets(userId);
         }
     }
 }

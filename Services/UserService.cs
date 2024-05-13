@@ -1,4 +1,6 @@
 ﻿using CRM.Db;
+using CRM.Models;
+using CRM.Models.Entities;
 using CRM.Repository;
 
 namespace CRM.Services
@@ -15,6 +17,16 @@ namespace CRM.Services
         public async Task<int?> Login(string login, string hash)
         {
             return await _repository.Login(login, hash);
+        }
+
+        public async Task<bool> CreateUser(UserEntity user)
+        {
+            return await _repository.CreateUser(user);
+        }
+
+        public async Task<List<User>> GetUsers()
+        {
+            return await _repository.GetUsers();
         }
     }
 }

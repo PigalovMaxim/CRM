@@ -1,15 +1,25 @@
-﻿namespace CRM.Models
+﻿using CRM.Models.Entities;
+
+namespace CRM.Models
 {
     public class WorkingWidget : BaseWidget
     {
-        public int totalHours { get; set; }
-        public int planHours { get; set; }
-        public int workedToday { get; set; }
-        public WorkingWidget(int totalHours, int planHours, int workedToday) : base(WidgetsIds.WORKING, "Рабочие часы")
+        public int TotalHours { get; set; }
+        public int PlanHours { get; set; }
+        public int WorkedToday { get; set; }
+
+        public WorkingWidget(List<WorkDayEntity> workDaysOfUser) : base(WidgetsIds.WORKING, "Рабочие часы")
         {
-            this.totalHours = totalHours;
-            this.planHours = planHours;
-            this.workedToday = workedToday;
-        }
+            var currentDate = DateTime.Now;
+            var workDaysOfCurrentMonth = workDaysOfUser
+                .Where(wd => wd.Day.Month == currentDate.Month && wd.Day.Year == currentDate.Year)
+                .ToList();
+            var hours = workDaysOfCurrentMonth.Sum(wd => wd.Count);
+        
+            TotalHours = hours;
+            PlanHours = 168;
+            //TODO
+            WorkedToday = 3;
+        } 
     }
 }

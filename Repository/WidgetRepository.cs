@@ -7,48 +7,23 @@ namespace CRM.Repository
     public class WidgetRepository
     {
         private readonly CrmDbContext _dbContext;
+        private readonly WorkDayRepository _workDayRepository;
+        private readonly UserDayRepository _userDaysRepository;
         public WidgetRepository(CrmDbContext dbContext)
         {
             _dbContext = dbContext;    
+            _workDayRepository = new WorkDayRepository(dbContext);
+            _userDaysRepository = new UserDayRepository(dbContext);
         }
-        public ArrayList GetWidgets(int userId)
+        public async Task<ArrayList> GetWidgets(int userId)
         {
+            var workDaysOfUser = await _workDayRepository.GetWorkDaysOfUser(userId);
+            var userDays = await _userDaysRepository.GetUserDays(userId);
+
             var widgets = new ArrayList
             {
-                new WorkingWidget(20, 100, 3),
-                new DaysWidget(new List<DaysTypes>{
-                    DaysTypes.WORKING,
-                    DaysTypes.WORKING,
-                    DaysTypes.WORKING,
-                    DaysTypes.SKIP,
-                    DaysTypes.SKIP,
-                    DaysTypes.WORKING,
-                    DaysTypes.WORKING,
-                    DaysTypes.WORKING,
-                    DaysTypes.WORKING,
-                    DaysTypes.WORKING,
-                    DaysTypes.SKIP,
-                    DaysTypes.SKIP,
-                    DaysTypes.WORKING,
-                    DaysTypes.WORKING,
-                    DaysTypes.WORKING,
-                    DaysTypes.TIME_OFF,
-                    DaysTypes.WORKING,
-                    DaysTypes.SKIP,
-                    DaysTypes.SKIP,
-                    DaysTypes.HOLIDAY,
-                    DaysTypes.HOLIDAY,
-                    DaysTypes.NONE,
-                    DaysTypes.NONE,
-                    DaysTypes.NONE,
-                    DaysTypes.NONE,
-                    DaysTypes.NONE,
-                    DaysTypes.NONE,
-                    DaysTypes.NONE,
-                    DaysTypes.NONE,
-                    DaysTypes.NONE,
-                    DaysTypes.NONE,
-                })
+                new WorkingWidget(workDaysOfUser),
+                new DaysWidget(userDays),
             };
 
             return widgets;
