@@ -16,7 +16,7 @@ namespace CRM.Controllers
             _userService = new UserService(crmDbContext);
             _workDaysService = new WorkDayService(crmDbContext);
         }
-          
+
         public IActionResult Index()
         {
             return View();

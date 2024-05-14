@@ -1,4 +1,5 @@
 ﻿using CRM.Db;
+using CRM.Models;
 using CRM.Repository;
 using System.Collections;
 
@@ -13,9 +14,9 @@ namespace CRM.Services
             _repository = new WidgetRepository(dbContext);
         }
 
-        public async Task<ArrayList> GetWidgets(int userId)
+        public async Task<ArrayList> GetWidgets(int userId, List<WidgetsIds> widgets)
         {
-            return await _repository.GetWidgets(userId);
+            return await _repository.GetWidgets(userId, widgets);
         }
     }
 }

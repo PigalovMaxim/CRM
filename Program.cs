@@ -35,6 +35,11 @@ app.MapControllerRoute(
 );
 
 app.MapControllerRoute(
+    name: "get_widget_list",
+    pattern: "api/{controller=Home}/{action=GetWidgetList}"
+);
+
+app.MapControllerRoute(
     name: "login",
     pattern: "api/{controller=Login}/{action=Login}"
 );

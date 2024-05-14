@@ -1,4 +1,8 @@
 const container = document.getElementById('js-home-container');
+const widgetList = document.getElementById('js-home-widget-modal-list');
+const modal = document.getElementById('js-home-modal');
+const closeModal = document.getElementById('js-home-close-modal');
+
 const WIDGETS_STYLES = [
     'w-3/10 h-home-widget-height',
     'w-3/10 h-home-widget-height',
@@ -13,13 +17,72 @@ const DAYS_COLORS = [
 const LOADING_CLASSNAMES = 'w-full h-full flex flex-col justify-center items-center';
 const MAIN_CLASSNAMES = 'w-full flex flex-row flex-wrap justify-start items-start';
 
+if (!Store.getItem('widgetIds')) {
+    Store.setItem('widgetIds', [0, 1]);
+}
+
+closeModal.addEventListener('click', () => {
+    modal.classList.add('hidden');
+});;
+
+async function setWidgetList() {
+    try {
+        const url = window.location.origin;
+        const answer = await fetch(url + '/api/home/getWidgetList');
+        result = await answer.json();
+        widgetList.innerHTML = '';
+
+        result.forEach(widget => {
+            const wrapper = document.createElement('div');
+            wrapper.classList = 'w-full h-10 flex flex-row justify-between items-center mb-2';
+
+            const title = document.createElement('span');
+            title.classList = 'text-lg text-white';
+            title.innerHTML = widget.widgetName;
+
+            const btn = document.createElement('button');
+            btn.classList = 'h-full aspect-square rounded-full text-3xl bg-c-green disabled:opacity-50 hover:bg-c-green-light text-white flex justify-center items-center';
+            btn.innerHTML = '+';
+            const list = Store.getItem('widgetIds');
+            btn.addEventListener('click', () => {
+                let list = Store.getItem('widgetIds');
+                if (list.includes(widget.widgetId)) {
+                    list = list.filter(id => id !== widget.widgetId);
+                } else {
+                    list.push(widget.widgetId);
+                }
+                Store.setItem('widgetIds', list);
+                init();
+            });
+
+            wrapper.appendChild(title);
+            wrapper.appendChild(btn);
+
+            widgetList.appendChild(wrapper);
+        });
+    } catch (e) {
+        console.error("Ошибка сервера", e);
+        return;
+    }
+}
+
 async function init() {
     setLoading();
-    const url = window.location.origin;
     let result = [];
-    const id = Store.getItem('user').id;
     try {
-        const answer = await fetch(url + '/api/home/getWidgets?id=' + id);
+        const url = window.location.origin;
+        const id = Store.getItem('user').id;
+        const widgetIds = Store.getItem('widgetIds');
+        const answer = await fetch(url + '/api/home/getWidgets', {
+            method: 'POST',
+            body: JSON.stringify({
+                id,
+                widgetIds,
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
         result = await answer.json();
     } catch (e) {
         console.error("Ошибка сервера");
@@ -38,10 +101,13 @@ async function init() {
         widgetButtonBody.classList = 'hover:bg-block-highlighted/20 transition-colors w-full h-full border-2 border-dashed border-white/40 rounded-lg flex justify-center items-center';
         widgetButtonBody.innerHTML = '<img alt="add widget" src="/imgs/plus.png" className="w-40 h-40 opacity-40" />';
         addWidgetButton.appendChild(widgetButtonBody);
+        addWidgetButton.addEventListener('click', () => modal.classList.remove('hidden'));
 
         container.appendChild(addWidgetButton);
         return;
     }
+    container.classList.add('h-full', 'flex', 'flex-col', 'justify-center', 'items-center');
+
     const title = document.createElement('h1');
     title.classList = 'text-4xl text-white mb-4 font-bold';
     title.innerHTML = 'У вас нет виджетов';
@@ -50,6 +116,7 @@ async function init() {
     const button = document.createElement('button');
     button.classList = 'w-60 h-10 bg-c-green hover:bg-c-green-light transition-colors text-white rounded-md flex justify-center items-center';
     button.innerHTML = 'Добавить';
+    button.addEventListener('click', () => modal.classList.remove('hidden'));
     container.appendChild(button);
 }
 
@@ -59,6 +126,7 @@ function setLoading() {
 }
 
 init();
+setWidgetList();
 
 class Widget {
     constructor(type, data) {
@@ -120,28 +188,35 @@ class Widget {
         return wrapper;
     }
 
-    getLayout() {
+    getLayout(widgetType) {
         const wrapper = document.createElement('div');
         wrapper.classList.add('relative', 'p-gap');
         wrapper.classList.add(...this.classNames.split(' '));
         const closeBtn = document.createElement('button');
         closeBtn.classList = 'transition-colors text-white rounded-md flex justify-center items-center absolute right-4 top-4 w-7 h-7';
         closeBtn.innerHTML = '<img src="/imgs/plus.png" alt="cross" class="w-6 h-6 rotate-45" />';
+        closeBtn.addEventListener('click', () => {
+            const filtered = Store.getItem('widgetIds').filter(id => id !== widgetType);
+            Store.setItem('widgetIds', filtered);
+            init();
+        });
         wrapper.appendChild(closeBtn);
         return wrapper;
     }
 
     render() {
-        const layout = this.getLayout();
+        let layout = null;
         switch (this.type) {
             case 0:
+                layout = this.getLayout(this.type);
                 layout.appendChild(this.getWorkingWidget());
                 return layout;
             case 1:
+                layout = this.getLayout(this.type);
                 layout.appendChild(this.getDaysWidget());
                 return layout;
             default:
-                return layout;
+                return this.getLayout(-1);
         }
     }
 }

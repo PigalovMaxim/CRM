@@ -38,7 +38,8 @@ namespace CRM.Models
                 days[i] = workingWeek[(i + numberOfMonthStart) % 7];
                 for (int j = 0; j < currentMonthDays.Count; j++)
                 {
-                    if (currentMonthDays.ElementAt(j).Day.Day == i - 1)
+                    int userDay = currentMonthDays.ElementAt(j).Day.Day;
+                    if (userDay == i + 1)
                     {
                         days[i] = currentMonthDays[j].DayType;
                     }

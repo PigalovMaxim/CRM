@@ -6,5 +6,15 @@
 
 </div>
 
+<div id="js-home-modal" class="hidden w-full h-full absolute top-0 left-0 bg-black/80 flex justify-center items-center z-50">
+    <div class="w-96 h-96 bg-block rounded-lg p-4 flex flex-col justify-start items-center relative">
+        <button id="js-home-close-modal" class="transition-colors text-white rounded-md flex justify-center items-center absolute right-4 top-4 w-7 h-7">
+            <img src="/imgs/plus.png" alt="cross" class="w-6 h-6 rotate-45" />
+        </button>
+        <h2 class="text-white mb-4">Список виджетов</h2>
+        <div id="js-home-widget-modal-list" class="w-full h-full overflow-y-auto"></div>
+    </div>
+</div>
+
 <script src="~/libs/moment.js" defer asp-append-version="true"></script>
 <script src="~/js/other/home.js" defer asp-append-version="true"></script>

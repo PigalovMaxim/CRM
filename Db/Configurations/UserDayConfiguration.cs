@@ -11,6 +11,7 @@ namespace CRM.Db.Configurations
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.DayType).HasMaxLength(Enum.GetValues(typeof(DaysTypes)).Length - 1).IsRequired();
+            builder.HasOne(x => x.User);
         }
     }
 }

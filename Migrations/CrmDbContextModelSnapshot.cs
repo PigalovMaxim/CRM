@@ -22,6 +22,47 @@ namespace CRM.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("CRM.Models.Entities.TaskEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CreatorId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
+
+                    b.Property<int>("ExecutorId")
+                        .HasColumnType("integer");
+
+                    b.Property<float>("Hours")
+                        .HasMaxLength(16)
+                        .HasColumnType("real");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(128)
+                        .HasColumnType("character varying(128)");
+
+                    b.Property<float>("WastedHours")
+                        .HasMaxLength(16)
+                        .HasColumnType("real");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorId");
+
+                    b.HasIndex("ExecutorId");
+
+                    b.ToTable("Tasks");
+                });
+
             modelBuilder.Entity("CRM.Models.Entities.UserDayEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -97,6 +138,25 @@ namespace CRM.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("WorkDays");
+                });
+
+            modelBuilder.Entity("CRM.Models.Entities.TaskEntity", b =>
+                {
+                    b.HasOne("CRM.Models.Entities.UserEntity", "Creator")
+                        .WithMany()
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CRM.Models.Entities.UserEntity", "Executor")
+                        .WithMany()
+                        .HasForeignKey("ExecutorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Creator");
+
+                    b.Navigation("Executor");
                 });
 
             modelBuilder.Entity("CRM.Models.Entities.UserDayEntity", b =>

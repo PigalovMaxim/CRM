@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CRM.Migrations
 {
     [DbContext(typeof(CrmDbContext))]
-    [Migration("20240508133444_Init")]
+    [Migration("20240514053535_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -24,6 +24,31 @@ namespace CRM.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("CRM.Models.Entities.UserDayEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Day")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("DayType")
+                        .HasMaxLength(4)
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserDays");
+                });
 
             modelBuilder.Entity("CRM.Models.Entities.UserEntity", b =>
                 {
@@ -75,6 +100,17 @@ namespace CRM.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("WorkDays");
+                });
+
+            modelBuilder.Entity("CRM.Models.Entities.UserDayEntity", b =>
+                {
+                    b.HasOne("CRM.Models.Entities.UserEntity", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("CRM.Models.Entities.WorkDayEntity", b =>

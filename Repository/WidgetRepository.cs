@@ -15,18 +15,22 @@ namespace CRM.Repository
             _workDayRepository = new WorkDayRepository(dbContext);
             _userDaysRepository = new UserDayRepository(dbContext);
         }
-        public async Task<ArrayList> GetWidgets(int userId)
+        public async Task<ArrayList> GetWidgets(int userId, List<WidgetsIds> widgets)
         {
-            var workDaysOfUser = await _workDayRepository.GetWorkDaysOfUser(userId);
-            var userDays = await _userDaysRepository.GetUserDays(userId);
+            var widgetList = new ArrayList();
 
-            var widgets = new ArrayList
+            if (widgets.Contains(WidgetsIds.WORKING)) {
+                var workDaysOfUser = await _workDayRepository.GetWorkDaysOfUser(userId);
+                widgetList.Add(new WorkingWidget(workDaysOfUser));
+            }
+
+            if (widgets.Contains(WidgetsIds.DAYS))
             {
-                new WorkingWidget(workDaysOfUser),
-                new DaysWidget(userDays),
-            };
+                var userDays = await _userDaysRepository.GetUserDays(userId);
+                widgetList.Add(new DaysWidget(userDays));
+            }
 
-            return widgets;
+            return widgetList;
         }
     }
 }
