@@ -1,19 +1,24 @@
-﻿@{
+﻿@using CRM.Models.Entities;
+@using System.Collections.Generic;
+
+@model List<TaskEntity>
+@{
     ViewData["Title"] = "Список задач";
 }
 
 <div class="w-full h-full flex flex-row justify-center items-center">
     <div class="flex flex-col flex-1 h-full mr-gap">
         <div class="w-full flex-1 overflow-y-auto">
-            @for (int i = 0; i < 15; i++)
+            @for (int i = 0; i < Model.Count; i++)
             {
+                var task = Model.ElementAt(i);
                 <div class="w-full h-14 bg-block mb-gap rounded-lg grid grid-cols-5 items-center px-4">
-                    <span class="text-white text-lg">{task.id}</span>
-                    <span class="text-white text-lg">{task.title}</span>
+                    <span class="text-white text-lg">@task.Id</span>
+                    <span class="text-white text-lg">@task.Title</span>
                     <span class="text-white text-lg">
-                        {task.wasted_hours}/{task.hours}
+                        @task.WastedHours/@task.Hours
                     </span>
-                    <span class="text-white text-lg">{task.status}</span>
+                    <span class="text-white text-lg">@(task.ExecutorId != null ? "В работе" : "Не в работе")</span>
                     <button class="h-10 bg-c-green hover:bg-c-green-light transition-colors text-white rounded-md flex justify-center items-center">
                         Взять задачу
                     </button>

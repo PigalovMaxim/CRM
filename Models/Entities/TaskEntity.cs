@@ -10,7 +10,7 @@
         public int CreatorId { get; set; }
         public UserEntity Creator { get; set; }
 
-        public int ExecutorId { get; set; }
-        public UserEntity Executor { get; set; }
+        public int? ExecutorId { get; set; }
+        public UserEntity? Executor { get; set; }
     }
 }

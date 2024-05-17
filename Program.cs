@@ -55,6 +55,11 @@ app.MapControllerRoute(
 );
 
 app.MapControllerRoute(
+    name: "admin_create_task",
+    pattern: "api/{controller=Admin}/{action=CreateTask}"
+);
+
+app.MapControllerRoute(
     name: "admin_create_work_day",
     pattern: "api/{controller=Admin}/{action=CreateWorkDay}"
 );

@@ -5,6 +5,11 @@ const createUserBtn = document.getElementById('js-admin-create-user');
 const createUserLogin = document.getElementById('js-admin-user-login');
 const createUserPassword = document.getElementById('js-admin-user-password');
 
+const createTaskBtn = document.getElementById('js-admin-create-task');
+const createTaskTitle = document.getElementById('js-admin-task-title');
+const createTaskHours = document.getElementById('js-admin-task-hours');
+const createTaskDescription = document.getElementById('js-admin-task-description');
+
 const createWorkDayDay = document.getElementById('js-admin-workday-day');
 const createWorkDayCount = document.getElementById('js-admin-workday-count');
 const createWorkDayDescription = document.getElementById('js-admin-workday-description');
@@ -51,6 +56,40 @@ async function createWorkDay() {
 
     console.error('Ошибка создания рабочего дня');
 }
+
+createTaskBtn.addEventListener('click', async () => {
+    let result = null;
+    try {
+        const url = window.location.origin;
+        const user = Store.getItem('user');
+        const answer = await fetch(url + '/api/Admin/CreateTask', {
+            method: 'POST',
+            body: JSON.stringify({
+                title: createTaskTitle.value,
+                description: createTaskDescription.value,
+                hours: createTaskHours.value,
+                wastedHours: 0,
+                creatorId: user.id
+
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        result = await answer.json();
+    } catch (e) {
+        console.error('Ошибка сервера');
+        return;
+    }
+
+    if (result) {
+        createTaskTitle.value = '';
+        createTaskHours.value = '';
+        createTaskDescription.value = '';
+    }
+
+    console.error('Ошибка создания пользователя');
+});
 
 createUserBtn.addEventListener('click', async () => {
     let result = null;

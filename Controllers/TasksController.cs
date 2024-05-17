@@ -6,16 +6,17 @@ namespace CRM.Controllers
 {
     public class TasksController : Controller
     {
-        private readonly UserService _userService;
+        private readonly TaskService _tasksService;
 
         public TasksController(CrmDbContext crmDbContext)
         {
-            _userService = new UserService(crmDbContext);
+            _tasksService = new TaskService(crmDbContext);
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var tasks = await _tasksService.GetTasks();
+            return View(tasks);
         }
     }
 }
