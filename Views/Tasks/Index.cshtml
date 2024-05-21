@@ -12,14 +12,26 @@
             @for (int i = 0; i < Model.Count; i++)
             {
                 var task = Model.ElementAt(i);
-                <div class="w-full h-14 bg-block mb-gap rounded-lg grid grid-cols-5 items-center px-4">
+                <div
+                    data-wasted="@task.WastedHours"
+                    data-title="@task.Title"
+                    data-hours="@task.Hours"
+                    data-executor="@task.ExecutorId"
+                    data-description="@task.Description"
+                    data-creator="@task.Creator.Login"
+                    class="js-tasks-task w-full h-14 bg-block mb-gap rounded-lg grid grid-cols-5 items-center px-4"
+                >
                     <span class="text-white text-lg">@task.Id</span>
                     <span class="text-white text-lg">@task.Title</span>
                     <span class="text-white text-lg">
                         @task.WastedHours/@task.Hours
                     </span>
                     <span class="text-white text-lg">@(task.ExecutorId != null ? "В работе" : "Не в работе")</span>
-                    <button class="h-10 bg-c-green hover:bg-c-green-light transition-colors text-white rounded-md flex justify-center items-center">
+                    <button
+                        data-id="@task.Id"
+                        data-executor="@task.ExecutorId"
+                        class="js-tasks-take h-10 transition-colors text-white rounded-md flex justify-center items-center"
+                    >
                         Взять задачу
                     </button>
                 </div>
@@ -35,5 +47,27 @@
         </div>
     </div>
 
-    <div class="w-96 h-full bg-red-200"></div>
+    <div id="js-tasks-current" class="w-96 hidden h-full bg-block p-4 flex flex-col justify-start items-start rounded-lg text-white">
+        <div class="w-full flex justify-center items-center">
+            <span class="text-2xl font-bold mb-6">Текущая задача</span>
+        </div>
+        <span class="mb-3">
+            <strong>Заголовок:</strong>
+            <span id="js-tasks-current-title">awd awd awhuidh awudh wadhuwh adha wdh awd awd wd wd   dw wd wd w wd wd wd  d  dwad aw   wiojdaowjd wjd d d dw jdiaow jdwaj idjw j  w iwdjowjd dj awjdjwo dijwaoid jaowij d</span>
+        </span>
+        <span class="mb-3">
+            <strong>Время:</strong>
+            <span id="js-tasks-current-hours">5 часов из 8 часов</span>
+        </span>
+        <span class="mb-3">
+            <strong>Создал:</strong>
+            <span id="js-tasks-current-creator">admin</span>
+        </span>
+        <span class="mb-3">
+            <strong>Описание:</strong>
+            <span id="js-tasks-current-description">awd awd awhuidh awudh wadhuwh adha wdh awd awd wd wd   dw wd wd w wd wd wd  d  dwad aw   wiojdaowjd wjd d d dw jdiaow jdwaj idjw j  w iwdjowjd dj awjdjwo dijwaoid jaowij d awd awd awhuidh awudh wadhuwh adha wdh awd awd wd wd   dw wd wd w wd wd wd  d  dwad aw   wiojdaowjd wjd d d dw jdiaow jdwaj idjw j  w iwdjowjd dj awjdjwo dijwaoid jaowij d</span>
+        </span>
+    </div>
 </div>
+
+<script src="~/dist/tasks.min.js" defer asp-append-version="true"></script>                  

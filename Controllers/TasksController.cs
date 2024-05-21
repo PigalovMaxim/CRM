@@ -18,5 +18,17 @@ namespace CRM.Controllers
             var tasks = await _tasksService.GetTasks();
             return View(tasks);
         }
+
+        [HttpGet]
+        public async Task<bool> TakeTask(int userId, int taskId)
+        {
+            return await _tasksService.TakeTask(userId, taskId);
+        }
+
+        [HttpGet]
+        public async Task<bool> StopTask(int userId, int taskId)
+        {
+            return await _tasksService.StopTask(userId, taskId);
+        }
     }
 }

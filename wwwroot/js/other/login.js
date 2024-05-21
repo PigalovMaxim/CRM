@@ -30,7 +30,7 @@ submit.addEventListener('click', async (e) => {
             }
         });
         const result = await answer.json();
-        Store.setItem('user', { login, id: result });
+        Store.setItem('user', { login, id: result.id, role: result.role });
         window.location.replace("/home");
     } catch (e) {
         console.error(e);

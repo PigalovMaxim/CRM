@@ -25,12 +25,15 @@ namespace CRM.Controllers
             {
                 return NotFound(); 
             }
-            var userId = await _service.Login(user.Login, user.Hash);
-            if(userId == null)
+            var userResult = await _service.Login(user.Login, user.Hash);
+            if(userResult == null)
             {
                 return BadRequest("Пользователь с таким именем не найден");
             }
-            return Ok(userId);
+            return Ok(new {
+                Id = userResult.Id,
+                Role = userResult.Role,
+            });
         }
     }
 }

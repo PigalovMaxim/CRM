@@ -1,15 +1,15 @@
 ﻿@{
     var menuItems = new List<dynamic>
     {
-        new { Url = "/home", Icon = "/imgs/home.png", Title = "Главная" },
-        new { Url = "/tasks", Icon = "/imgs/tasks.svg", Title = "Задачи" },
-        new { Url = "", Icon = "/imgs/profile.png", Title = "Профиль" },
-        new { Url = "/admin", Icon = "/imgs/admin.svg", Title = "Админ панель" },
+        new { Url = "/home", Icon = "/imgs/home.png", Title = "Главная", Role = -1 },
+        new { Url = "/tasks", Icon = "/imgs/tasks.svg", Title = "Задачи", Role = -1 },
+        new { Url = "/profile", Icon = "/imgs/profile.png", Title = "Профиль", Role = -1 },
+        new { Url = "/admin", Icon = "/imgs/admin.svg", Title = "Админ панель", Role = 2 },
     };
 }
 
 <aside id="js-menu" class="h-full flex flex-col justify-start items-start bg-block transition-width w-side-menu-closed">
-    <button data-url="/home" id="js-logo-menu" class="w-full transition-opacity text-white font-bold text-3xl mt-4 mb-10">
+    <button data-role="-1" data-url="/home" id="js-logo-menu" class="w-full transition-opacity text-white font-bold text-3xl mt-4 mb-10">
         CRM
     </button>
     @foreach (var item in menuItems)
@@ -17,7 +17,7 @@
         bool isActive = Context.Request.Path == item.Url;
         string btnClassname = isActive ? "bg-block-highlighted/60" : "";
 
-        <button data-url="@item.Url" class="js-menu-button w-full px-4 h-14 hover:bg-block-highlighted transition-colors flex flex-row items-center justify-center @btnClassname">
+        <button data-role="@item.Role" data-url="@item.Url" class="js-menu-button w-full px-4 h-14 hover:bg-block-highlighted transition-colors flex flex-row items-center justify-center @btnClassname">
             <img src="@item.Icon" alt="@item.Title" class="w-5 h-5 mr-2" />
             <span class="text-white transition-width text-lg overflow-hidden max-w-full">
                 @item.Title

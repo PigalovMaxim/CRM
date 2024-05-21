@@ -10,6 +10,7 @@ namespace CRM.Db
         public DbSet<WorkDayEntity> WorkDays { get; set; }
         public DbSet<UserDayEntity> UserDays { get; set; }
         public DbSet<TaskEntity> Tasks { get; set; }
+        public DbSet<RoleEntity> Roles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -32,11 +32,11 @@
             </div>
         </main>
     </div>
+    <script src="~/dist/app.min.js" asp-append-version="true"></script>
     @if (HaveMenu)
     {
-        <script src="~/dist/menu.min.js" asp-append-version="true"></script>
+        <script defer src="~/dist/menu.min.js" asp-append-version="true"></script>
     }
-    <script src="~/dist/app.min.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

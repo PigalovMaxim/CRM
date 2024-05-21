@@ -14,7 +14,7 @@ namespace CRM.Services
             _repository = new UserRepository(dbContext);
         }
 
-        public async Task<int?> Login(string login, string hash)
+        public async Task<UserEntity?> Login(string login, string hash)
         {
             return await _repository.Login(login, hash);
         }

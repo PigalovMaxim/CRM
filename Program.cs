@@ -40,6 +40,16 @@ app.MapControllerRoute(
 );
 
 app.MapControllerRoute(
+    name: "take_task",
+    pattern: "api/{controller=Tasks}/{action=TakeTask}"
+);
+
+app.MapControllerRoute(
+    name: "stop_task",
+    pattern: "api/{controller=Tasks}/{action=StopTask}"
+);
+
+app.MapControllerRoute(
     name: "login",
     pattern: "api/{controller=Login}/{action=Login}"
 );

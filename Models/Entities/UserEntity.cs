@@ -5,5 +5,7 @@
         public int Id { get; set; }
         public string Login { get; set; } = string.Empty;
         public string Hash { get; set; } = string.Empty;
+        public int RoleId { get; set; }
+        public RoleEntity Role { get; set; }
     }
 }

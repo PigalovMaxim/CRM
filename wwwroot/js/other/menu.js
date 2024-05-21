@@ -4,6 +4,7 @@ const logo = document.getElementById("js-logo-menu");
 const logout = document.getElementById("js-logout");
 const menuTogglers = document.getElementsByClassName("js-menu-toggle");
 const menuButtons = document.getElementsByClassName("js-menu-button");
+const user = Store.getItem('user');
 
 let isMenuOpen = false;
 
@@ -25,6 +26,10 @@ for (const toggler of menuTogglers) {
 }
 
 for (const button of [...menuButtons, logo]) {
+    const role = button.getAttribute('data-role');
+    if (role != -1 && role != user.role.id) {
+        button.classList.add('hidden');
+    }
     button.addEventListener("click", () => {
         window.location.href = button.getAttribute("data-url");
     });

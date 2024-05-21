@@ -20,7 +20,18 @@ namespace CRM.Services
 
         public async Task<List<TaskEntity>> GetTasks()
         {
-            return await _repository.GetTasks();
+            var tasks = await _repository.GetTasks();
+            return tasks.OrderByDescending(task => task.ExecutorId != null).ThenBy(task => task.Id).ToList();
+        }
+
+        public async Task<bool> TakeTask(int userId, int taskId)
+        {
+            return await _repository.TakeTask(userId, taskId);
+        }
+
+        public async Task<bool> StopTask(int userId, int taskId)
+        {
+            return await _repository.StopTask(userId, taskId);
         }
     }
 }

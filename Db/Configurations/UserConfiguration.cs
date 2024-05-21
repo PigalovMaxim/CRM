@@ -10,6 +10,7 @@ namespace CRM.Db.Configurations
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Login).HasMaxLength(128).IsRequired();
+            builder.Property(x => x.RoleId).IsRequired();
             builder.Property(x => x.Hash).IsRequired();
         }
     }
